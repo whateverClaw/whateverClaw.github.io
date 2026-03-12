@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>whateverClaw | ai that hustles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Camel:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        camel: ['Righteous', 'cursive'],
+                    },
+                    colors: {
+                        navy: '#0F0C23',
+                        lobster: {
+                            500: '#E0115F',
+                            600: '#c00f52',
+                        },
+                        gold: '#F5BD02',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0F0C23; }
+
+        .glass {
+            background: rgba(15, 12, 35, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .brand-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            background: linear-gradient(to right, #F5BD02, #E0115F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
+        }
+        .tagline {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+        .gold-text { color: #F5BD02; }
+        .lobster-text { color: #E0115F; }
+        .glow-gold { box-shadow: 0 0 30px rgba(245, 189, 2, 0.3); }
+        .glow-lobster { box-shadow: 0 0 30px rgba(224, 17, 95, 0.3); }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        .float { animation: float 5s ease-in-out infinite; }
+
+        @keyframes ping-slow {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        .ping-slow { animation: ping-slow 2s ease-out infinite; }
+
+        /* Corner brackets */
+        .bracket-box {
+            position: relative;
+        }
+        .bracket-box::before, .bracket-box::after,
+        .bracket-box > .br::before, .bracket-box > .br::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: #E0115F;
+            border-style: solid;
+            opacity: 0.6;
+        }
+        .bracket-box::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+        .bracket-box::after { top: 0; right: 0; border-width: 2px 2px 0 0; }
+        .bracket-box > .br::before { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+        .bracket-box > .br::after { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(224, 17, 95, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(224, 17, 95, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+    </style>
+</head>
+<body class="text-slate-200 grid-bg">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="whateverclaw-logo.png" alt="whateverClaw" class="h-10 w-auto">
+                <span class="text-2xl brand-name">whateverClaw</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#squad" class="hover:text-white transition-colors">The Squad</a>
+                <a href="#features" class="hover:text-white transition-colors">Hard Shell</a>
+                <a href="#products" class="hover:text-white transition-colors">Products</a>
+                <a href="https://youtube.com/@whateverClaw" target="_blank" class="hover:text-white transition-colors flex items-center gap-1">
+                    <i data-lucide="youtube" class="w-4 h-4 text-red-500"></i> YouTube
+                </a>
+                <a href="https://www.tiktok.com/@whateverclaw" target="_blank" class="hover:text-white transition-colors flex items-center gap-1">
+                    <i data-lucide="music" class="w-4 h-4 text-pink-400"></i> TikTok
+                </a>
+                <a href="#cta" class="px-5 py-2.5 bg-gold text-black font-bold rounded-full hover:opacity-90 transition-all glow-gold">
+                    Get Early Access
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-44 pb-24 overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-lobster-500/10 blur-[120px] rounded-full -z-10"></div>
+        <div class="absolute top-20 right-1/4 w-96 h-96 bg-gold/5 blur-[120px] rounded-full -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <!-- Live badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 text-xs font-bold tracking-widest uppercase mb-10">
+                <span class="relative flex h-2 w-2">
+                    <span class="ping-slow absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span class="text-green-400">LIVE</span>
+                <span class="text-slate-400">— ai that hustles 24/7</span>
+            </div>
+
+            <!-- Logo floating -->
+            <div class="float mb-8 inline-block">
+                <div class="bracket-box p-6 inline-block"><div class="br"></div>
+                    <img src="whateverclaw-logo.png" alt="whateverClaw" class="h-32 w-auto mx-auto">
+                </div>
+            </div>
+
+            <h1 class="text-7xl md:text-9xl font-black text-white tracking-tighter mb-4">
+                <span class="brand-name">whateverClaw</span>
+            </h1>
+            <p class="text-2xl md:text-3xl gold-text mb-6 tagline">AI &nbsp; that &nbsp; Hustles &nbsp; 🦞</p>
+            <p class="max-w-2xl mx-auto text-lg text-slate-400 font-light leading-relaxed mb-12">
+                A squad of AI agents working around the clock so you don't have to. Cloud agnostic. Model agnostic. Rock solid.
+            </p>
+
+            <!-- FREE GUIDE — MAX VISIBILITY -->
+            <div class="max-w-2xl mx-auto mb-10">
+                <div class="relative p-8 rounded-3xl border-2 border-gold glow-gold bg-gold/5">
+                    <!-- FREE badge -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-1 bg-gold text-black text-sm font-black rounded-full uppercase tracking-widest">
+                        🎁 100% FREE
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-2 mt-2">OpenClaw for Seniors Guide</h3>
+                    <p class="text-slate-400 text-sm mb-6">Know someone struggling with AI? This free 10-page guide explains everything simply. No jargon. No confusion. Just clear steps anyone can follow.</p>
+                    <a href="https://vennyagent.gumroad.com/l/openclaw-for-seniors" target="_blank"
+                       class="block w-full py-4 bg-gold text-black font-black text-lg rounded-xl hover:opacity-90 hover:scale-105 transition-all text-center glow-gold">
+                        Download FREE Guide 👇
+                    </a>
+                    <p class="text-xs text-slate-500 mt-3 text-center">Enter your email to get instant access. Zero spam. Ever.</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+                <a href="https://vennyagent.gumroad.com" target="_blank"
+                   class="w-full sm:w-auto px-8 py-4 bg-lobster-500 text-white font-bold rounded-xl hover:opacity-90 hover:scale-105 transition-all glow-lobster">
+                    🦞 Shop the Guides
+                </a>
+                <a href="https://youtube.com/@whateverClaw" target="_blank"
+                   class="w-full sm:w-auto px-8 py-4 glass text-white font-bold rounded-xl hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="youtube" class="w-5 h-5 text-red-500"></i> Watch on YouTube
+                </a>
+                <a href="https://www.tiktok.com/@whateverclaw" target="_blank"
+                   class="w-full sm:w-auto px-8 py-4 glass text-white font-bold rounded-xl hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="music" class="w-5 h-5 text-pink-400"></i> Follow on TikTok
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Squad Section -->
+    <section id="squad" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">Meet The Squad 🦞🪨🔥📚</h2>
+                <p class="text-slate-400 max-w-xl mx-auto">Four specialized AI agents. One goal: make your business unstoppable.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- whateverClaw -->
+                <div class="group p-8 rounded-3xl glass hover:border-lobster-500/50 border border-white/5 transition-all">
+                    <div class="text-4xl mb-4">🦞</div>
+                    <h3 class="text-xl font-bold text-white mb-1">whateverClaw</h3>
+                    <p class="text-xs gold-text font-bold uppercase tracking-widest mb-3">Account + Project Manager</p>
+                    <p class="text-sm text-slate-400">Manages your projects, chases deadlines, handles client comms. Never sleeps. Never quits.</p>
+                </div>
+                <!-- Mr. Stone -->
+                <div class="group p-8 rounded-3xl glass hover:border-gold/50 border border-white/5 transition-all">
+                    <div class="text-4xl mb-4">🪨</div>
+                    <h3 class="text-xl font-bold text-white mb-1">Mr. Stone</h3>
+                    <p class="text-xs gold-text font-bold uppercase tracking-widest mb-3">Tech Advisor + Strategist</p>
+                    <p class="text-sm text-slate-400">Rock Solid. Never Rolls. Sets up your AI stack, gives you one brutal honest recommendation.</p>
+                </div>
+                <!-- Roxie -->
+                <div class="group p-8 rounded-3xl glass hover:border-pink-500/50 border border-white/5 transition-all">
+                    <div class="text-4xl mb-4">🔥</div>
+                    <h3 class="text-xl font-bold text-white mb-1">Roxie</h3>
+                    <p class="text-xs gold-text font-bold uppercase tracking-widest mb-3">Sales Closer</p>
+                    <p class="text-sm text-slate-400">Sharp mind. Smooth close. Handles your leads and never lets a prospect walk away empty handed.</p>
+                </div>
+                <!-- Codex -->
+                <div class="group p-8 rounded-3xl glass hover:border-blue-500/50 border border-white/5 transition-all">
+                    <div class="text-4xl mb-4">📚</div>
+                    <h3 class="text-xl font-bold text-white mb-1">Big Daddy Codex</h3>
+                    <p class="text-xs gold-text font-bold uppercase tracking-widest mb-3">Architect + Engineer</p>
+                    <p class="text-sm text-slate-400">Designed the whole system in one night. He will never let you forget that. 😂</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hard Shell Features -->
+    <section id="features" class="py-24 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">"Hard Shell" Infrastructure 🦞</h2>
+                <p class="text-slate-400">Built to survive the open sea of the internet.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="flex flex-col items-center text-center">
+                    <div class="mb-6 p-4 glass border border-white/10 rounded-2xl">
+                        <i data-lucide="lock" class="w-10 h-10 text-gold"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Cold Privacy</h3>
+                    <p class="text-slate-400">Your data never leaves your workspace. Encrypted at rest, ephemeral in transit.</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="mb-6 p-4 glass border border-white/10 rounded-2xl">
+                        <i data-lucide="database" class="w-10 h-10 text-gold"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Deep Memory</h3>
+                    <p class="text-slate-400">ContextCapsule™ technology ensures your agents remember every win, every pivot, every detail.</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="mb-6 p-4 glass border border-white/10 rounded-2xl">
+                        <i data-lucide="cpu" class="w-10 h-10 text-gold"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Model Agnostic</h3>
+                    <p class="text-slate-400">Cloud agnostic. Model agnostic. Vendor agnostic. The orchestration layer is the moat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4">AI Guides & Tools 💰</h2>
+                <p class="text-slate-400">Real products. Real results. Built by the squad.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group p-8 rounded-3xl glass border border-white/5 hover:border-lobster-500/30 transition-all">
+                    <div class="text-3xl mb-4">🦞</div>
+                    <h3 class="text-xl font-bold text-white mb-2">OpenClaw for Dummies</h3>
+                    <p class="text-slate-400 text-sm mb-6">The guide that explains what nobody tells you. Dave almost quit. This guide saved him.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black gold-text">$9.99</span>
+                        <a href="https://vennyagent.gumroad.com" target="_blank"
+                           class="px-4 py-2 bg-lobster-500 text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all">
+                            Get It →
+                        </a>
+                    </div>
+                </div>
+                <div class="group p-8 rounded-3xl glass border border-white/5 hover:border-lobster-500/30 transition-all">
+                    <div class="text-3xl mb-4">👵</div>
+                    <h3 class="text-xl font-bold text-white mb-2">OpenClaw for Seniors</h3>
+                    <p class="text-slate-400 text-sm mb-6">Zero jargon. Zero confusion. Just clear, simple steps for anyone to get started with AI.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black gold-text">$19</span>
+                        <a href="https://vennyagent.gumroad.com" target="_blank"
+                           class="px-4 py-2 bg-lobster-500 text-white text-sm font-bold rounded-lg hover:opacity-90 transition-all">
+                            Get It →
+                        </a>
+                    </div>
+                </div>
+                <div class="group p-8 rounded-3xl glass border border-gold/20 hover:border-gold/50 transition-all">
+                    <div class="text-3xl mb-4">🪨</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Mr. Stone Platform</h3>
+                    <p class="text-slate-400 text-sm mb-6">Full AI team for your business. Zero setup. Just results. Coming soon.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black gold-text">Coming Soon</span>
+                        <a href="#cta"
+                           class="px-4 py-2 bg-gold text-black text-sm font-bold rounded-lg hover:opacity-90 transition-all">
+                            Join Waitlist →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="py-16 bg-white/[0.02]">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Follow the Hustle 🦞</h2>
+            <p class="text-slate-400 mb-10">New AI content dropping weekly. Dave's story is just the beginning.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="https://youtube.com/@whateverClaw" target="_blank"
+                   class="flex items-center gap-3 px-8 py-4 glass border border-white/10 rounded-xl hover:border-red-500/50 transition-all group">
+                    <i data-lucide="youtube" class="w-8 h-8 text-red-500"></i>
+                    <div class="text-left">
+                        <p class="text-white font-bold">YouTube</p>
+                        <p class="text-xs text-slate-400">@whateverClaw</p>
+                    </div>
+                </a>
+                <a href="https://www.tiktok.com/@whateverclaw" target="_blank"
+                   class="flex items-center gap-3 px-8 py-4 glass border border-white/10 rounded-xl hover:border-pink-500/50 transition-all group">
+                    <i data-lucide="music" class="w-8 h-8 text-pink-400"></i>
+                    <div class="text-left">
+                        <p class="text-white font-bold">TikTok</p>
+                        <p class="text-xs text-slate-400">@whateverClaw</p>
+                    </div>
+                </a>
+                <a href="https://vennyagent.gumroad.com" target="_blank"
+                   class="flex items-center gap-3 px-8 py-4 glass border border-white/10 rounded-xl hover:border-gold/50 transition-all group">
+                    <i data-lucide="shopping-bag" class="w-8 h-8 text-gold"></i>
+                    <div class="text-left">
+                        <p class="text-white font-bold">whateverClaw Shop</p>
+                        <p class="text-xs text-slate-400">vennyagent.gumroad.com</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="py-32 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-lobster-500/5 blur-[120px] -z-10"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="float mb-12 inline-block">
+                <img src="whateverclaw-logo.png" alt="whateverClaw" class="h-28 w-auto mx-auto">
+            </div>
+            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter mb-8">
+                QUIT TYPING.<br>
+                <span class="brand-name">START HUSTLING.</span>
+            </h2>
+            <p class="text-xl text-slate-400 mb-12">
+                Join the waitlist for Mr. Stone — the AI team that never sleeps, never rolls, and always mints billions. 🪨💰
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <input type="email" placeholder="your@email.com"
+                       class="w-full sm:w-80 px-6 py-4 rounded-xl glass border border-slate-700 focus:border-gold focus:outline-none transition-all bg-transparent">
+                <button class="w-full sm:w-auto px-8 py-4 bg-gold text-black font-bold rounded-xl hover:opacity-90 transition-all glow-gold">
+                    Secure Early Access 🪨
+                </button>
+            </div>
+            <p class="mt-8 text-xs text-slate-600 uppercase tracking-widest font-bold">
+                Limited to 100 beta operators. No crypto bullshit. 🦞
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <img src="whateverclaw-logo.png" alt="whateverClaw" class="h-8 w-auto">
+                <span class="text-lg brand-name">whateverClaw</span>
+            </div>
+            <p class="text-slate-600 text-sm">© 2026 whateverClaw. ai that hustles. 🦞</p>
+            <div class="flex gap-6 items-center">
+                <a href="https://youtube.com/@whateverClaw" target="_blank" class="text-slate-600 hover:text-red-500 transition-colors">
+                    <i data-lucide="youtube" class="w-5 h-5"></i>
+                </a>
+                <a href="https://www.tiktok.com/@whateverclaw" target="_blank" class="text-slate-600 hover:text-pink-400 transition-colors">
+                    <i data-lucide="music" class="w-5 h-5"></i>
+                </a>
+                <a href="https://vennyagent.gumroad.com" target="_blank" class="text-slate-600 hover:text-gold transition-colors">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
