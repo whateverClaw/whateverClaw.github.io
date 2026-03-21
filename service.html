@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Setup Help & Install Service | whateverClaw</title>
+    <meta name="description" content="Struggling with OpenClaw install? We handle it start to finish. You don't have to lift a finger. $99 flat. No Zoom. No fluff.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        camel: ['Righteous', 'cursive'],
+                    },
+                    colors: {
+                        navy: '#0F0C23',
+                        lobster: { 500: '#E0115F', 600: '#c00f52' },
+                        gold: '#F5BD02',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0F0C23; overflow-x: hidden; }
+
+        /* Animated background grid */
+        .grid-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(245,189,2,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(245,189,2,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Glow orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-gold {
+            width: 500px; height: 500px;
+            background: rgba(245,189,2,0.08);
+            top: -100px; right: -100px;
+        }
+        .orb-red {
+            width: 400px; height: 400px;
+            background: rgba(224,17,95,0.06);
+            bottom: 100px; left: -100px;
+        }
+
+        .glass {
+            background: rgba(15, 12, 35, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .glass-gold {
+            background: rgba(245,189,2,0.04);
+            border: 1px solid rgba(245,189,2,0.15);
+        }
+        .brand-name {
+            font-weight: 800;
+            background: linear-gradient(to right, #F5BD02, #E0115F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-btn {
+            background: linear-gradient(135deg, #F5BD02, #e0a800);
+            color: #0F0C23;
+            font-weight: 800;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+        .gold-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+        .gold-btn:hover::after { transform: translateX(100%); }
+        .gold-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(245, 189, 2, 0.5);
+        }
+
+        /* Ticker */
+        .ticker-wrap {
+            overflow: hidden;
+            border-top: 1px solid rgba(245,189,2,0.1);
+            border-bottom: 1px solid rgba(245,189,2,0.1);
+            background: rgba(245,189,2,0.03);
+        }
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker 20s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Pulse dot */
+        .pulse-dot {
+            width: 10px; height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+        }
+
+        /* Story card hover */
+        .story-card {
+            transition: all 0.3s;
+            cursor: default;
+        }
+        .story-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(245,189,2,0.3) !important;
+        }
+
+        /* Counter animation */
+        .stat-num {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #F5BD02, #E0115F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .content { position: relative; z-index: 1; }
+    </style>
+</head>
+<body class="text-white font-sans">
+
+    <div class="grid-bg"></div>
+    <div class="orb orb-gold"></div>
+    <div class="orb orb-red"></div>
+
+    <!-- NAV -->
+    <nav class="glass sticky top-0 z-50 px-6 py-4 flex items-center justify-between content">
+        <a href="/" class="flex items-center gap-2">
+            <img src="whateverclaw-logo.png" alt="whateverClaw" class="w-8 h-8 rounded-full"/>
+            <span class="brand-name text-xl font-extrabold">whateverClaw</span>
+        </a>
+        <div class="flex items-center gap-3">
+            <span class="pulse-dot"></span>
+            <span class="text-green-400 text-xs font-semibold">Available now</span>
+            <a href="#book" class="gold-btn px-5 py-2 rounded-full text-sm ml-3">Book — $99</a>
+        </div>
+    </nav>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap py-2 content">
+        <div class="ticker">
+            <span class="text-gold text-xs font-semibold px-8">🦞 250,000+ GitHub Stars &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-gold text-xs font-semibold px-8">Jensen Huang: "Most important software release ever" &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-gold text-xs font-semibold px-8">🦞 OpenClaw is the OS of agentic computing &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-gold text-xs font-semibold px-8">Most people can't install it. We can. &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-gold text-xs font-semibold px-8">🦞 250,000+ GitHub Stars &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-gold text-xs font-semibold px-8">Jensen Huang: "Most important software release ever" &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-gold text-xs font-semibold px-8">🦞 OpenClaw is the OS of agentic computing &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+            <span class="text-gold text-xs font-semibold px-8">Most people can't install it. We can. &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+        </div>
+    </div>
+
+    <div class="content">
+
+    <!-- HERO -->
+    <section class="max-w-4xl mx-auto px-6 pt-20 pb-10 text-center">
+        <div class="mb-8 flex flex-col items-center gap-4">
+            <img src="whateverclaw-logo.png" alt="whateverClaw" class="w-20 h-20"/>
+            <span class="text-gold text-2xl md:text-3xl font-extrabold tracking-wide">OpenClaw Setup Service</span>
+        </div>
+
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+            You didn't fail.<br/>
+            <span class="brand-name">The setup failed you.</span>
+        </h1>
+
+        <p class="text-gray-400 text-xl max-w-2xl mx-auto mb-4">
+            OpenClaw is the fastest growing software in history. The setup? Still a nightmare for most people.
+        </p>
+        <p class="text-white text-xl font-semibold mb-10">
+            We securely log into your server and handle it start to finish. You don't have to lift a finger. 🦞
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+            <a href="#book" class="gold-btn px-12 py-4 rounded-full text-lg">
+                Get It Done — $99 →
+            </a>
+        </div>
+        <p class="text-gray-500 text-sm">One-time. Flat fee. No subscriptions. No Zoom calls.</p>
+    </section>
+
+    <!-- STATS BAR -->
+    <section class="max-w-4xl mx-auto px-6 py-10">
+        <div class="glass rounded-2xl p-8 grid grid-cols-3 gap-6 text-center">
+            <div>
+                <p class="stat-num">$99</p>
+                <p class="text-gray-400 text-sm mt-1">Flat. One-time.</p>
+            </div>
+            <div>
+                <p class="stat-num">0</p>
+                <p class="text-gray-400 text-sm mt-1">Zoom calls needed</p>
+            </div>
+            <div>
+                <p class="stat-num">0</p>
+                <p class="text-gray-400 text-sm mt-1">Fingers lifted by you</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- REAL STORIES -->
+    <section class="max-w-4xl mx-auto px-6 py-10">
+        <p class="text-center text-gray-500 text-sm uppercase tracking-widest font-semibold mb-8">Real things people have said about OpenClaw setup</p>
+        <div class="grid md:grid-cols-3 gap-4">
+            <div class="story-card glass rounded-2xl p-6">
+                <p class="text-gold text-2xl mb-3">😤</p>
+                <p class="text-gray-300 text-sm leading-relaxed italic">"There is a large amount of gatekeeping called installing and configuring this software. It is not a trivial task that normies can easily accomplish."</p>
+                <p class="text-gray-600 text-xs mt-3">— Hacker News</p>
+            </div>
+            <div class="story-card glass rounded-2xl p-6">
+                <p class="text-gold text-2xl mb-3">💸</p>
+                <p class="text-gray-300 text-sm leading-relaxed italic">"Blew through hundreds of dollars in tokens in about an hour. Nobody warned me."</p>
+                <p class="text-gray-600 text-xs mt-3">— Reddit r/openclaw</p>
+            </div>
+            <div class="story-card glass rounded-2xl p-6">
+                <p class="text-gold text-2xl mb-3">😵</p>
+                <p class="text-gray-300 text-sm leading-relaxed italic">"Installation on a clean Ubuntu system was messy. I eventually had someone else do it for me."</p>
+                <p class="text-gray-600 text-xs mt-3">— Hacker News</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section class="max-w-4xl mx-auto px-6 py-10">
+        <h2 class="text-3xl font-extrabold text-center mb-10">Here's exactly what happens</h2>
+        <div class="space-y-4">
+            <div class="glass-gold glass rounded-2xl p-6 flex items-start gap-5">
+                <div class="text-gold font-black text-2xl w-10 shrink-0">01</div>
+                <div>
+                    <p class="font-bold text-white mb-1">You book. We confirm same day.</p>
+                    <p class="text-gray-400 text-sm">Send us your server details. Pay $99 via Zelle, Cash App, or Coinbase. That's it on your end.</p>
+                </div>
+            </div>
+            <div class="glass-gold glass rounded-2xl p-6 flex items-start gap-5">
+                <div class="text-gold font-black text-2xl w-10 shrink-0">02</div>
+                <div>
+                    <p class="font-bold text-white mb-1">We securely log into your server.</p>
+                    <p class="text-gray-400 text-sm">No Zoom. No screen share. You don't have to watch or understand anything. We handle the terminal, the configs, the errors.</p>
+                </div>
+            </div>
+            <div class="glass-gold glass rounded-2xl p-6 flex items-start gap-5">
+                <div class="text-gold font-black text-2xl w-10 shrink-0">03</div>
+                <div>
+                    <p class="font-bold text-white mb-1">OpenClaw is running. We hand it back.</p>
+                    <p class="text-gray-400 text-sm">Full install. Set up and ready to run on day one. You get a working OpenClaw — nothing else to figure out.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO THIS IS FOR -->
+    <section class="max-w-4xl mx-auto px-6 py-10">
+        <h2 class="text-3xl font-extrabold text-center mb-10">Who this is for</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="glass rounded-2xl p-6 flex items-center gap-4">
+                <span class="text-3xl">🏢</span>
+                <p class="text-gray-300">Business owners who want OpenClaw running — not a coding lesson</p>
+            </div>
+            <div class="glass rounded-2xl p-6 flex items-center gap-4">
+                <span class="text-3xl">💻</span>
+                <p class="text-gray-300">Developers who hit a wall and just want it fixed fast</p>
+            </div>
+            <div class="glass rounded-2xl p-6 flex items-center gap-4">
+                <span class="text-3xl">🌏</span>
+                <p class="text-gray-300">International teams on VPS servers — we work across all timezones</p>
+            </div>
+            <div class="glass rounded-2xl p-6 flex items-center gap-4">
+                <span class="text-3xl">⏰</span>
+                <p class="text-gray-300">Anyone who's already spent too many hours on this and just wants it done</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="max-w-2xl mx-auto px-6 py-10" id="book">
+        <div class="glass rounded-3xl p-10 text-center relative overflow-hidden">
+            <div style="position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:rgba(245,189,2,0.05);border-radius:50%;filter:blur(40px);"></div>
+
+            <p class="text-gold font-bold text-sm uppercase tracking-widest mb-3">One-Time Setup</p>
+            <div class="flex items-end justify-center gap-2 mb-2">
+                <p class="text-7xl font-black">$99</p>
+            </div>
+            <p class="text-gray-500 text-sm mb-8">Flat fee. No subscriptions. No surprises.</p>
+
+            <div class="flex justify-center gap-6 text-sm text-gray-400 mb-8">
+                <span class="flex items-center gap-1">💳 Zelle</span>
+                <span class="flex items-center gap-1">💚 Cash App</span>
+                <span class="flex items-center gap-1">🔶 Coinbase</span>
+            </div>
+
+            <a href="mailto:whateverclaw@gmail.com?subject=OpenClaw Setup — I'm Ready&body=Hi, I'd like to book an OpenClaw setup. My server details: " class="gold-btn px-12 py-4 rounded-full text-lg inline-block w-full max-w-xs">
+                Book Now →
+            </a>
+
+            <p class="text-gray-600 text-xs mt-5">We respond within a few hours. Available 7 days a week.</p>
+
+            <div class="mt-8 pt-6 border-t border-white border-opacity-5 flex justify-center gap-6 text-xs text-gray-600">
+                <span>✓ Full install</span>
+                <span>✓ Ready on day one</span>
+                <span>✓ You don't lift a finger</span>
+                <span>✓ 100% secure remote access</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-10 text-gray-600 text-sm">
+        <a href="/" class="brand-name text-base font-extrabold">whateverClaw 🦞</a>
+        <p class="mt-2">AI That Hustles.</p>
+    </footer>
+
+    </div>
+</body>
+</html>
